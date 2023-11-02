@@ -79,3 +79,4 @@ obj-$(CONFIG_FPR_FPC)		+= fpr_FingerprintCard/
 obj-$(CONFIG_HW_BOOT_INFO)    += bootinfo.o
 obj-$(CONFIG_NFC_NXP_CTN730)	+=ctn730/
 obj-y                           += qrc/
+obj-$(CONFIG_KINECTICS_XR_NORDIC) += kxrctrl/
