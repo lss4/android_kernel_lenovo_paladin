@@ -39,7 +39,6 @@ struct es7210_snd_private {
 struct es7210_snd_private *es7210_private;
 
 extern int as33970_probe_status(void);
-extern int register_hardware_info(const char *name, const char *model);
 
 static int es7210_i2c_write(struct i2c_client *client, u8 addr, u8 value)
 {
@@ -277,7 +276,6 @@ static int es7210_i2c_probe(struct i2c_client *i2c_client,
 		pr_err("failed to create attr group\n");
 	}
 
-	register_hardware_info("ADC", "Everest-Semi_ES7210");
 	pr_info("%s: es7210 probe successful\n", __func__);
 	return ret;
 }

@@ -42,7 +42,6 @@
 
 #include <linux/platform_data/i2c-hid.h>
 
-#include <linux/bootinfo.h>
 #include <linux/gpio.h>
 #include <linux/of_gpio.h>
 
@@ -523,7 +522,6 @@ static void i2c_hid_get_input(struct i2c_hid *ihid)
 	int ret;
 	u32 ret_size;
 	int size = le16_to_cpu(ihid->hdesc.wMaxInputLength);
-	static bool hw_info_registed = false;
 	static char last_tpd_status = 0;
 	static bool first_tpd_status_reported = false;
 	static char last_kbd_status = 0;
@@ -586,9 +584,6 @@ static void i2c_hid_get_input(struct i2c_hid *ihid)
 			hidinput_disconnect(ihid->hid);
 		} else if (kb_connect == 1 && !lenovo_i2c_kb_registed) {
 			hidinput_connect(ihid->hid, 0);
-		}
-		if (hw_info_registed) {
-			unregister_hardware_info("KB_INFO");
 		}
 		/* set the output gpio according to cradle status */
 		gpio_val = (ihid->inbuf[3] >> 3) & 1? 0 : 1;
@@ -657,8 +652,6 @@ static void i2c_hid_get_input(struct i2c_hid *ihid)
 			first_kbd_status_reported = false;
 			dev_err(&ihid->client->dev, "KB Dis-connected\n");
 		}
-		register_hardware_info("KB_INFO", versions_info);
-		hw_info_registed = true;
 		return;
 	}
 

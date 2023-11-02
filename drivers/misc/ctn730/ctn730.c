@@ -248,7 +248,6 @@ static const char * const status_text[] = {
 	"bist_err",
 };
 
-extern register_hardware_info(const char *name, const char *model);
 static int ctn730_parse_message(struct ctn730_dev *ctn730_dev, char cmd, char * data, int count);
 
 struct ctn730_dev *ctn730;
@@ -868,7 +867,6 @@ static int ctn730_parse_message(struct ctn730_dev *ctn730_dev, char cmd, char * 
 						memset(ctn730_dev->pen_info.pen_uid, 0, 8);
 						if(!ctn730_dev->hardwareinfo){
 							sprintf(version,"%02x%02x",ctn730_dev->version[0], ctn730_dev->version[1]);
-							register_hardware_info("pen-charger:ctn730,ver",(const char *)(version));
 							ctn730_dev->hardwareinfo = 1;
 						}
 						//modify by:wangkai41 2022.2.10 desc:fix tp bug

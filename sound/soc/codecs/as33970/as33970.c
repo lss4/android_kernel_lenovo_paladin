@@ -178,7 +178,6 @@ static const char * const as33970_supplies[] = {
 	"as33970-avdd13",
 };
 static int as33970_enable_playback(struct as33970_priv *as33970, int enable_playback);
-extern int register_hardware_info(const char *name, const char *model);
 /*
  * This functions takes as33970_cmd structure as input and output parameters
  * to communicate AS33970. If operation is successfully, it returns number of
@@ -2024,9 +2023,6 @@ static int as33970_i2c_probe(struct i2c_client *i2c,
 	if (ret < 0)
 		goto err;
 
-        register_hardware_info("Soundtrigger-DSP", "SYNA-AS33970");
-        register_hardware_info("Analog MIC", "MA-HRA381-H23-2");
-        register_hardware_info("Speaker", "SLS2712");
         probe_status = 1;
         dev_info(dev, "%s: exit\n", __func__);
         return 0;

@@ -369,7 +369,6 @@ struct smb1398_chip {
 	bool			usb_present;
 };
 
-extern register_hardware_info(const char *name, const char *model);
 static int smb1398_read(struct smb1398_chip *chip, u16 reg, u8 *val)
 {
 	int rc = 0, value = 0;
@@ -2269,7 +2268,6 @@ static int smb1398_div2_cp_master_probe(struct smb1398_chip *chip)
 				rc);
 		return rc;
 	}
-	register_hardware_info("charge-pump", "charge-pump-master");
 	dev_dbg(chip->dev, "smb1398 DIV2_CP master is probed successfully\n");
 
 	return 0;
@@ -2499,7 +2497,6 @@ static int smb1398_div2_cp_slave_probe(struct smb1398_chip *chip)
 				rc);
 		return rc;
 	}
-	register_hardware_info("charge-pump", "charge-pump-slave");
 	dev_dbg(chip->dev, "smb1398 DIV2_CP slave probe successfully\n");
 
 	return 0;

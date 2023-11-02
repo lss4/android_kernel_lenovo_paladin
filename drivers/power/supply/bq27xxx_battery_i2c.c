@@ -23,7 +23,6 @@
 
 static DEFINE_IDR(battery_id);
 static DEFINE_MUTEX(battery_mutex);
-extern register_hardware_info(const char *name, const char *model);
 
 static irqreturn_t bq27xxx_battery_irq_handler_thread(int irq, void *data)
 {
@@ -202,7 +201,6 @@ static int bq27xxx_battery_i2c_probe(struct i2c_client *client,
 			return ret;
 		}
 	}
-	register_hardware_info("batteryinfo","i2c-fg");
 	return 0;
 
 err_mem:
